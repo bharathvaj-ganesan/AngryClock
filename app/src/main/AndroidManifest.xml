@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="in.wakeupearly.angryclock"
+    android:installLocation="internalOnly">
+
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application android:name="in.wakeupearly.App" android:label="Angry Clock" android:icon="@mipmap/ic_launcher">
+        <activity android:name="in.wakeupearly.MainActivity"
+            android:theme="@style/AppTheme"
+            android:label="Angry clock">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="in.wakeupearly.SettingsActivity"
+            android:label="Settings"/>
+
+        <activity android:name="in.wakeupearly.alarm.AlarmActivity" android:theme="@style/AppTheme" />
+        <receiver android:name="in.wakeupearly.alarm.AlarmReceiver" />
+        <receiver android:name="in.wakeupearly.alarm.BootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <service android:name="in.wakeupearly.alarm.AlarmService" />
+    </application>
+</manifest>
